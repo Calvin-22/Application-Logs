@@ -1,7 +1,23 @@
 ﻿#include <iostream>
 #include <limits> // Pour numeric_limits
 
-// Affichage du menu 
+// Déclarations de fonctions 
+void afficherLogSudo() {
+    std::cout << "Fonctionnalite pour afficher le log sudo en cours..." << std::endl;
+    // Ici, vous mettriez le code pour afficher le log sudo
+}
+
+void afficherEtEnregistrerLogSsh() {
+    std::cout << "Fonctionnalite pour afficher et enregistrer le log ssh en cours..." << std::endl;
+    // Ici, vous mettriez le code pour afficher et enregistrer le log ssh
+}
+
+void sortirDuProgramme() {
+    std::cout << "Sortie du programme..." << std::endl;
+    // Ici, vous mettriez le code pour nettoyer avant de quitter (si nécessaire)
+}
+
+// Affichage du menu
 int main() {
     int choix;
 
@@ -13,27 +29,39 @@ int main() {
     std::cout << "0 - Sortir du programme" << std::endl;
     std::cout << std::endl;
 
+    // Lancement de la saisie
     while (true) {
         std::cout << "[] ";
         std::cin >> choix;
 
-        // Vérifier si la saisie a réussi (si un entier a été entré)
         if (std::cin.good()) {
-            break; // Sortir de la boucle si la saisie est valide
+            break;
         }
         else {
             std::cout << "Erreur : Veuillez entrer un nombre entier." << std::endl;
-            // Effacer les erreurs du flux d'entrée
             std::cin.clear();
-            // Ignorer le reste de la ligne d'entrée
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
     }
 
+    // Affichage de la valeur saisie
     std::cout << "Vous avez choisi l'option : " << choix << std::endl;
 
-    // Vous pouvez maintenant utiliser la variable 'choix' pour effectuer
-    // les actions correspondantes au menu.
+    // Lancement du programme en fonction de la valeur saisie 
+    switch (choix) {
+    case 1:
+        afficherLogSudo();
+        break;
+    case 2:
+        afficherEtEnregistrerLogSsh();
+        break;
+    case 0:
+        sortirDuProgramme();
+        break;
+    default:
+        std::cout << "Option invalide." << std::endl;
+        break;
+    }
 
     return 0;
 }
